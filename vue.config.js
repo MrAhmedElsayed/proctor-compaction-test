@@ -2,7 +2,5 @@ const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: ["vuetify"],
   publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/" + process.env.CI_PROJECT_NAME + "/"
-      : "/",
+    process.env.NODE_ENV === "production" ? "/proctor-compaction-test/" : "/",
 });
