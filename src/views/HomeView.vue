@@ -11,107 +11,19 @@
         </v-card>
       </v-col>
     </v-row>
+    <!--    >>mold info-->
+    <MoldInfo />
+    <!--    <<mold info-->
+    <!--    >>sample inputs-->
+    <SampleInputs />
+    <!--    <<sample inputs-->
+    <!--    >>Results section-->
+    <ResultsSection />
+    <!--    <<Results section-->
     <v-row>
-      <v-col cols="auto" md="6">
-        <v-card class="mx-auto pa-2" flat outlined>
-          <v-card-text>
-            <p class="tj-font">بيانات القالب - Mold Info</p>
-            <v-row>
-              <v-col>
-                <v-text-field
-                  label="وزن القالب"
-                  placeholder="WEIGHT OF MOLD"
-                  prepend-inner-icon="mdi-weight-gram"
-                  flat
-                  outlined
-                  dense
-                  type="number"
-                  v-model="moldWeight"
-                  class="scheher"
-                ></v-text-field>
-              </v-col>
-              <v-col>
-                <v-text-field
-                  label="حجم القالب"
-                  placeholder="VOLUME OF MOLD"
-                  prepend-inner-icon="mdi-cup-water"
-                  flat
-                  outlined
-                  dense
-                  type="number"
-                  v-model="moldVolume"
-                  class="scheher"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="auto" md="6">
-        <v-card class="mx-auto pa-2" flat outlined>
-          <v-card-text>
-            <p class="tj-font">الطبقات والضربات - BLOWS & LAYER</p>
-            <v-row>
-              <v-col>
-                <v-text-field
-                  label="عدد الطبقات"
-                  placeholder="NUMBER OF LAYERS"
-                  prepend-inner-icon="mdi-layers-triple-outline"
-                  flat
-                  outlined
-                  dense
-                  type="number"
-                  v-model="layersNo"
-                  class="scheher"
-                ></v-text-field>
-              </v-col>
-              <v-col>
-                <v-text-field
-                  label="عدد الضربات"
-                  placeholder="BLOWS/LAYER"
-                  prepend-inner-icon="mdi-tally-mark-5"
-                  flat
-                  outlined
-                  dense
-                  type="number"
-                  v-model="blowLayer"
-                  class="scheher"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-card class="mx-auto pa-2" flat outlined>
-          <v-card-text>
-            <p class="tj-font">DETERMINATION No.</p>
-            <v-row>
-              <v-col>
-                <!--                  https://www.tablesgenerator.com/html_tables -->
-                <v-simple-table>
-                  <template v-slot:default>
-                    <thead>
-                      <tr>
-                        <th class="text-right">1</th>
-                        <th class="text-right">2</th>
-                        <th class="text-right">3</th>
-                        <th class="text-right">4</th>
-                        <th class="text-right">5</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <td class="text-right">وزن العينة رطبة</td>
-                      <td class="text-right">الكثافة الرطبة</td>
-                      <td class="text-right">الكثافة الجافة</td>
-                    </tbody>
-                  </template>
-                </v-simple-table>
-              </v-col>
-            </v-row>
-          </v-card-text>
+      <v-col cols="12">
+        <v-card flat class="pa-3">
+          <ResultChart />
         </v-card>
       </v-col>
     </v-row>
@@ -119,30 +31,22 @@
 </template>
 
 <script>
+import ResultChart from "@/components/ResultChart";
+import MoldInfo from "@/components/MoldInfo";
+import SampleInputs from "@/components/SampleInputs";
+import ResultsSection from "@/components/ResultsSection";
 export default {
   name: "HomeView",
+  components: { ResultsSection, SampleInputs, MoldInfo, ResultChart },
   data: () => ({
-    moldWeight: "",
-    moldVolume: "",
-    layersNo: "",
-    blowLayer: "",
-    desserts: [
+    items: [
+      { text: "وزن القالب + العينة - WT.OF SAMPLE+MOLD", icon: "mdi-folder" },
       {
-        name: "Frozen Yogurt",
-        calories: 159,
+        text: "وزن العينة رطبة - WT.OF WET SAMPLE",
+        icon: "mdi-account-multiple",
       },
-      {
-        name: "Ice cream sandwich",
-        calories: 237,
-      },
-      {
-        name: "Eclair",
-        calories: 262,
-      },
-      {
-        name: "Cupcake",
-        calories: 305,
-      },
+      { text: "الكثافة الرطبة - WET UNIT WT.", icon: "mdi-star" },
+      { text: "الكثافة الجافة- DRY UNIT WT.", icon: "mdi-history" },
     ],
   }),
 };
